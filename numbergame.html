@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number  Game</title>
+    <style>
+   body { font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; text-align: center; margin: 50px; color: cornflowerblue; background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);} 
+
+   #guess-input { padding: 5px; margin: 10px; }
+
+    #result { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>** Number Game **</h1>
+    <p><h3>..it's a random number...try to guess it..Best luck..</p>
+    
+    <input type="number" id="guess-input" placeholder="Enter your guess">
+    <button onclick="checkGuess()">Submit your Number</button>
+
+    <p id="result"></p>
+
+    <script>
+        
+        const secretNumber = Math.floor(Math.random() * 100) + 1;//for random number generation
+        let attempts = 0;
+        console.log(secretNumber); // this part is used for see secret no for devloper.
+
+        function checkGuess() {
+            const guess = parseInt(document.getElementById('guess-input').value);
+            attempts++;
+
+            if (isNaN(guess) || guess < 1 || guess > 100) {
+                document.getElementById('result').innerHTML = 'enter no between 1 to 100'; //its a Template literals backSticks string
+            } else if (guess === secretNumber) {
+                document.getElementById('result').innerHTML = `Congrats You guessed the correct number ${secretNumber} in ${attempts} attempts.`;
+            } else if (guess < secretNumber) {
+                document.getElementById('result').innerHTML = 'Too low..Try again.';
+            } else {
+                document.getElementById('result').innerHTML = 'Too high..Try again.';
+            }
+        }
+    </script>
+</body>
+</html>
